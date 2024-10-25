@@ -1,0 +1,20 @@
+services:
+  arob3:
+    image: aroblab4
+    build:
+      context: ./docker/
+      dockerfile: Dockerfile
+    container_name: aroblab4
+    environment:
+      DISPLAY: $DISPLAY
+      ROS_LOCALHOST_ONLY: 1
+    privileged: true
+    volumes:
+      # X11
+      - ~/.Xauthority:/root/.Xauthority
+      # 
+      - /dev/:/dev
+      # Code
+      - ./pXX_arob_lab4:/root/catkin_ws/src/pXX_arob_lab4
+    network_mode: "host"
+    command: tail -f /dev/null
